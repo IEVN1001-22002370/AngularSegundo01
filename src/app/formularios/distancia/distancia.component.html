@@ -1,0 +1,27 @@
+<div>
+  <h1>Multiplicar numeros</h1>
+  <form [formGroup]="formulario">
+    <div>
+      <label for="numero1">x1: </label>
+      <input type="numero1" formControlName="numero1" type="number">
+    </div>
+    <div>
+      <label for="numero2">y1: </label>
+      <input type="numero2" formControlName="numero2" type="number">
+    </div>
+    <div>
+      <label for="numero3">x2: </label>
+      <input type="numero3" formControlName="numero3" type="number">
+    </div>
+    <div>
+      <label for="numero4">y2: </label>
+      <input type="numero4" formControlName="numero4" type="number">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="opNumeros()">
+      Calcular
+    </button>
+  </form>
+  <div>
+      <h2>Resultado: {{resultado}}</h2>
+    </div>
+</div>
