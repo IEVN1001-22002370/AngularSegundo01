@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { NavbarComponent } from "./navbar/navbar.component";
+// import { ZodiacoComponent } from "./formularios/zodiaco/zodiaco.component";
 // import { DistanciaComponent } from "./formularios/distancia/distancia.component";
 
 @Component({
