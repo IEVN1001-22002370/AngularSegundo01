@@ -1,0 +1,119 @@
+<style>
+    .sim-container {
+        max-width: 750px;
+        margin: 40px auto;
+        background: #e6e6e6;
+        padding: 40px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
+    }
+
+    .sim-title {
+        background: #f3f7c5;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 22px;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    .answer-btn {
+        display: inline-block;
+        background: #1a73e8;
+        color: white;
+        padding: 12px 20px;
+        margin: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 40%;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+
+    .answer-btn:hover {
+        background: #166bd6;
+        transform: scale(1.05);
+    }
+
+    .correct {
+        background: #44c767 !important;
+    }
+
+    .incorrect {
+        background: #e63946 !important;
+    }
+</style>
+
+<div class="sim-container">
+    <div id="question" class="sim-title">Pregunta de ejemplo...</div>
+
+    <div id="answers">
+        <div class="answer-btn" onclick="checkAnswer(0)">Respuesta A</div>
+        <div class="answer-btn" onclick="checkAnswer(1)">Respuesta B</div>
+        <div class="answer-btn" onclick="checkAnswer(2)">Respuesta C</div>
+        <div class="answer-btn" onclick="checkAnswer(3)">Respuesta D</div>
+    </div>
+</div>
+
+<script>
+    const quiz = [
+        {
+            pregunta: "¿Cuál es la capital de Francia?",
+            opciones: ["Madrid", "Roma", "París", "Berlín"],
+            correcta: 2
+        },
+        {
+            pregunta: "¿Cuántos planetas hay en el sistema solar?",
+            opciones: ["7", "8", "9", "5"],
+            correcta: 1
+        },
+        {
+            pregunta: "¿Quién pintó la Mona Lisa?",
+            opciones: ["Picasso", "Leonardo da Vinci", "Van Gogh", "Rembrandt"],
+            correcta: 1
+        }
+    ];
+
+    let index = 0;
+
+    function cargarPregunta() {
+        document.getElementById("question").innerHTML = quiz[index].pregunta;
+        let btns = document.querySelectorAll(".answer-btn");
+
+        btns.forEach((btn, i) => {
+            btn.innerHTML = quiz[index].opciones[i];
+            btn.classList.remove("correct", "incorrect");
+            btn.style.pointerEvents = "auto";
+        });
+    }
+
+    function checkAnswer(i) {
+        let btns = document.querySelectorAll(".answer-btn");
+
+        if (i === quiz[index].correcta) {
+            btns[i].classList.add("correct");
+        } else {
+            btns[i].classList.add("incorrect");
+            btns[quiz[index].correcta].classList.add("correct");
+        }
+
+
+        btns.forEach(btn => btn.style.pointerEvents = "none");
+
+
+        setTimeout(() => {
+            index++;
+            if (index < quiz.length) {
+                cargarPregunta();
+            } else {
+                document.getElementById("question").innerHTML = "¡Has terminado el simulador!";
+                document.getElementById("answers").innerHTML = "";
+            }
+        }, 1200);
+    }
+
+    cargarPregunta();
+</script>
+
+

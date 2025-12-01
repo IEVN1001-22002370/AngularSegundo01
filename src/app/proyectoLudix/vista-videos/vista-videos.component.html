@@ -1,0 +1,87 @@
+<style>
+    .video-container {
+        max-width: 900px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .main-video {
+        width: 100%;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+    }
+
+    .thumbnails {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .thumb {
+        width: 160px;
+        height: 100px;
+        border-radius: 10px;
+        overflow: hidden;
+        cursor: pointer;
+        transition: transform 0.2s;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    }
+
+    .thumb:hover {
+        transform: scale(1.07);
+    }
+
+    .thumb video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+</style>
+
+<div class="video-container">
+    <h2 style="margin-bottom: 20px;">Gameplays del Juego</h2>
+
+
+    <video id="mainPlayer" class="main-video" controls>
+        <source src="video1.mp4" type="video/mp4">
+        Tu navegador no soporta video.
+    </video>
+
+
+    <div class="thumbnails">
+        <div class="thumb" onclick="changeVideo('video1.mp4')">
+            <video muted>
+                <source src="video1.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="thumb" onclick="changeVideo('video2.mp4')">
+            <video muted>
+                <source src="video2.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="thumb" onclick="changeVideo('video3.mp4')">
+            <video muted>
+                <source src="video3.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="thumb" onclick="changeVideo('video4.mp4')">
+            <video muted>
+                <source src="video4.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+</div>
+
+<script>
+    function changeVideo(src) {
+        const player = document.getElementById('mainPlayer');
+        player.src = src;
+        player.play();
+    }
+</script>

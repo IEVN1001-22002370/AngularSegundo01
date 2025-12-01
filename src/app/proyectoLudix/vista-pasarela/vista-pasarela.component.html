@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pasarela de Pago - Ludix</title>
+
+<style>
+
+    body{
+        font-family: Arial, sans-serif;
+        background:#f5f5f5;
+        margin:0;
+        padding:0;
+        display:flex;
+        justify-content:center;
+    }
+
+    .wrapper{
+        width:1100px;
+        background:white;
+        min-height:100vh;
+        box-shadow:0 0 10px rgba(0,0,0,0.1);
+    }
+
+
+    .navbar{
+        background:#e8d3bd;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 40px;
+    }
+
+    .navbar .logo{
+        font-size:26px;
+        font-weight:bold;
+        color:#4a2d24;
+    }
+
+    .navbar .links{
+        display:flex;
+        gap:35px;
+        font-size:15px;
+        color:#4a2d24;
+    }
+
+    .navbar .icons{
+        display:flex;
+        gap:20px;
+        font-size:20px;
+        cursor:pointer;
+    }
+
+
+    .section-title{
+        background:#e8e6e6;
+        padding:10px 20px;
+        font-weight:bold;
+        margin-top:25px;
+        font-size:18px;
+    }
+
+    .payment-options{
+        display:flex;
+        justify-content:space-between;
+        padding:30px 40px;
+        gap:40px;
+    }
+
+
+    .option-box{
+        background:#e3dedf;
+        width:48%;
+        height:160px;
+        border-radius:8px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        cursor:pointer;
+        transition:0.2s;
+    }
+
+    .option-box img{
+        width:100px;
+        opacity:0.8;
+    }
+
+    .option-box:hover{
+        background:#d4cecf;
+    }
+
+
+    .product-container{
+        padding:30px 40px;
+        display:flex;
+        justify-content:flex-start;
+    }
+
+    .product-box{
+        background:#e3dedf;
+        width:220px;
+        height:160px;
+        border-radius:8px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+    }
+
+    .product-box img{
+        width:110px;
+        opacity:0.9;
+    }
+
+
+    .buy-button{
+        margin-left:40px;
+        margin-top:10px;
+    }
+
+    .btn{
+        padding:12px 35px;
+        background:#1f74ff;
+        color:white;
+        border:none;
+        border-radius:6px;
+        cursor:pointer;
+        font-size:15px;
+    }
+
+    .btn:hover{
+        background:#0059d4;
+    }
+
+</style>
+</head>
+
+<body>
+
+<div class="wrapper">
+
+
+    <div class="section-title">Método de pago</div>
+
+    <div class="payment-options">
+        <div class="option-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png">
+        </div>
+
+        <div class="option-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
+        </div>
+    </div>
+
+
+    <div class="section-title">Tu producto</div>
+
+    <div class="product-container">
+        <div class="product-box">
+            <img src="https://cdn-icons-png.flaticon.com/512/2907/2907253.png">
+        </div>
+    </div>
+
+    <div class="buy-button">
+        <button class="btn">Confirmar compra</button>
+    </div>
+
+</div>
+
+</body>
+</html>

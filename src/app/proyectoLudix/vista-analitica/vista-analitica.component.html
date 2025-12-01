@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estadísticas y Comentarios</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f9fafb;
+      color: #111827;
+    }
+    .section-title {
+      background: #e5e7eb;
+      padding: 16px 24px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .estadisticas {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      padding: 40px 24px;
+      background: white;
+    }
+    .estadistica-item {
+      text-align: center;
+      transition: transform 0.2s ease;
+    }
+    .estadistica-item:hover {
+      transform: scale(1.05);
+    }
+    .estadistica-item svg {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 12px;
+      stroke: #111827;
+      stroke-width: 1.5;
+    }
+    .estadistica-item p {
+      font-weight: bold;
+      font-size: 16px;
+    }
+    .comentarios {
+      background: white;
+      padding: 24px;
+    }
+    .comentarios .texto {
+      background: #f3f4f6;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 16px;
+      color: #374151;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section-title">Estadísticas</div>
+  <div class="estadisticas">
+    <div class="estadistica-item">
+      <!-- Ícono de gráfica circular -->
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M11 2a10 10 0 1 0 10 10h-9z" />
+        <path d="M11 2v10l8 4" />
+      </svg>
+      <p>Formato gráfica</p>
+    </div>
+    <div class="estadistica-item">
+      <!-- Ícono de tabla -->
+      <svg viewBox="0 0 24 24" fill="none">
+        <rect x="3" y="4" width="18" height="16" rx="2"/>
+        <line x1="3" y1="8" x2="21" y2="8"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="16" x2="21" y2="16"/>
+      </svg>
+      <p>Formato tabla</p>
+    </div>
+  </div>
+
+  <div class="section-title">Comentarios</div>
+  <div class="comentarios">
+    <div class="texto">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquam nunc, eget facilisis justo sapien nec sapien. Curabitur ac velit nec justo fermentum tincidunt. Integer vel turpis nec justo tincidunt tincidunt.
+    </div>
+  </div>
+
+</body>
+</html>
