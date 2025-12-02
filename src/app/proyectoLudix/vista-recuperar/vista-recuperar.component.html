@@ -1,0 +1,149 @@
+<div class="container">
+  <div class="left">
+    <h2>Recuperar Contraseña</h2>
+
+    <div class="icon-button">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M4 6h16v12H4z" stroke-width="1.5" />
+        <path d="M4 6l8 6 8-6" stroke-width="1.5" />
+      </svg>
+      <span>Recuperación por Email</span>
+    </div>
+
+    <div class="icon-button">
+      <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M6 2h4l1 5-3 2c1.5 3 4 5.5 7 7l2-3 5 1v4c0 1.1-.9 2-2 2C10 22 2 14 2 6c0-1.1.9-2 2-2z"
+          stroke-width="1.5" />
+      </svg>
+      <span>Recuperación por SMS</span>
+    </div>
+  </div>
+
+  <div class="right">
+
+    <!-- STEP 1 -->
+    <div *ngIf="step === 1" id="step1">
+      <div class="step-indicator">
+        <div class="step active">
+          <div class="step-circle">1</div>
+          <div class="step-label">Email</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <div class="step-label">Código</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-label">Nueva Contraseña</div>
+        </div>
+      </div>
+
+      <h2>Recupera tu cuenta</h2>
+      <p class="info-text">
+        Ingresa tu dirección de correo electrónico y te enviaremos un código para restablecer tu contraseña.
+      </p>
+
+      <form [formGroup]="emailForm" (ngSubmit)="enviarCodigo()">
+        <div>
+          <label for="email">Email</label>
+          <input formControlName="email" type="email" placeholder="tu@correo.com" />
+        </div>
+
+        <button type="submit" [disabled]="emailForm.invalid">Enviar código</button>
+      </form>
+
+      <a routerLink="/login" class="back-link">Volver al inicio de sesión</a>
+    </div>
+
+    <!-- STEP 2 -->
+    <div *ngIf="step === 2" id="step2">
+      <div class="step-indicator">
+        <div class="step">
+          <div class="step-circle">1</div>
+          <div class="step-label">Email</div>
+        </div>
+        <div class="step active">
+          <div class="step-circle">2</div>
+          <div class="step-label">Código</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">3</div>
+          <div class="step-label">Nueva Contraseña</div>
+        </div>
+      </div>
+
+      <h2>Verifica tu identidad</h2>
+      <p class="info-text">
+        Hemos enviado un código de verificación a tu correo electrónico. Ingresa el código a continuación.
+      </p>
+
+      <form [formGroup]="codeForm" (ngSubmit)="verificarCodigo()">
+        <div>
+          <label>Código de verificación</label>
+          <input formControlName="codigo" type="text" placeholder="Ingresa el código de 6 dígitos" />
+        </div>
+        <button type="submit" [disabled]="codeForm.invalid">Verificar código</button>
+      </form>
+
+      <p class="info-text">
+        ¿No recibiste el código?
+        <a href="#" (click)="reenviarCodigo($event)">Reenviar código</a>
+      </p>
+    </div>
+
+    <!-- STEP 3 -->
+    <div *ngIf="step === 3" id="step3">
+      <div class="step-indicator">
+        <div class="step">
+          <div class="step-circle">1</div>
+          <div class="step-label">Email</div>
+        </div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          <div class="step-label">Código</div>
+        </div>
+        <div class="step active">
+          <div class="step-circle">3</div>
+          <div class="step-label">Nueva Contraseña</div>
+        </div>
+      </div>
+
+      <h2>Crea una nueva contraseña</h2>
+      <p class="info-text">Tu nueva contraseña debe ser diferente a las anteriores.</p>
+
+      <form [formGroup]="passwordForm" (ngSubmit)="restablecerContrasena()">
+        <div>
+          <label>Nueva contraseña</label>
+          <input formControlName="password" type="password" placeholder="Ingresa tu nueva contraseña" />
+        </div>
+
+        <div>
+          <label>Confirmar contraseña</label>
+          <input formControlName="confirm" type="password" placeholder="Confirma tu nueva contraseña" />
+        </div>
+
+        <button type="submit" [disabled]="passwordForm.invalid">Restablecer contraseña</button>
+      </form>
+
+    </div>
+
+    <!-- STEP 4 -->
+    <div *ngIf="step === 4" id="step4">
+      <div class="success-message">
+        <div class="success-icon">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        <h2>¡Contraseña restablecida!</h2>
+        <p class="info-text">
+          Tu contraseña ha sido cambiada exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.
+        </p>
+
+        <button routerLink="/login">Iniciar sesión</button>
+      </div>
+    </div>
+  </div>
+</div>
