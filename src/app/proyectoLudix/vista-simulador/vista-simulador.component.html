@@ -1,119 +1,110 @@
-<style>
-    .sim-container {
-        max-width: 750px;
-        margin: 40px auto;
-        background: #e6e6e6;
-        padding: 40px;
-        border-radius: 25px;
-        text-align: center;
-        box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
-    }
-
-    .sim-title {
-        background: #f3f7c5;
-        padding: 15px;
-        border-radius: 10px;
-        font-size: 22px;
-        margin-bottom: 30px;
-        font-weight: bold;
-    }
-
-    .answer-btn {
-        display: inline-block;
-        background: #1a73e8;
-        color: white;
-        padding: 12px 20px;
-        margin: 10px 15px;
-        border-radius: 8px;
-        cursor: pointer;
-        width: 40%;
-        font-size: 18px;
-        transition: 0.2s;
-    }
-
-    .answer-btn:hover {
-        background: #166bd6;
-        transform: scale(1.05);
-    }
-
-    .correct {
-        background: #44c767 !important;
-    }
-
-    .incorrect {
-        background: #e63946 !important;
-    }
-</style>
-
 <div class="sim-container">
-    <div id="question" class="sim-title">Pregunta de ejemplo...</div>
-
-    <div id="answers">
-        <div class="answer-btn" onclick="checkAnswer(0)">Respuesta A</div>
-        <div class="answer-btn" onclick="checkAnswer(1)">Respuesta B</div>
-        <div class="answer-btn" onclick="checkAnswer(2)">Respuesta C</div>
-        <div class="answer-btn" onclick="checkAnswer(3)">Respuesta D</div>
+  <div class="sim-header">
+    <div class="progress-container">
+      <div class="progress-bar" [style.width.%]="getProgress()"></div>
     </div>
+    <div class="score-display">
+      <div class="score-icon">🏆</div>
+      <div class="score-text">Puntuación: <span class="score-value">{{ score }}</span></div>
+    </div>
+  </div>
+
+  <div *ngIf="!gameFinished; else results">
+    
+    <div class="sim-title">
+      <div class="question-counter">
+        Pregunta {{ currentQuestionIndex + 1 }} de {{ questions.length }}
+      </div>
+      <div class="question-text">{{ getCurrentQuestion().question }}</div>
+    </div>
+
+    <div class="answers-container">
+      <div *ngFor="let option of getCurrentQuestion().options; let i = index"
+           class="answer-btn"
+           [class.correct]="selectedAnswer !== null && i === getCurrentQuestion().correct"
+           [class.incorrect]="selectedAnswer === i && !isCorrect"
+           [class.selected]="selectedAnswer === i"
+           (click)="selectAnswer(i)">
+        {{ option }}
+      </div>
+    </div>
+
+    <div *ngIf="showExplanation" class="explanation-container">
+      <div class="explanation-title">
+        <span class="explanation-icon">💡</span> Explicación
+      </div>
+      <div class="explanation-text">
+        {{ getCurrentQuestion().explanation }}
+      </div>
+      <button class="next-btn" (click)="nextQuestion()">
+        {{ currentQuestionIndex < questions.length - 1 ? 'Siguiente Pregunta' : 'Ver Resultados' }}
+        <span class="arrow">→</span>
+      </button>
+    </div>
+
+    <div *ngIf="selectedAnswer !== null && !showExplanation" class="feedback">
+      <div *ngIf="isCorrect" class="feedback-correct">
+        <span class="feedback-icon">✓</span> ¡Correcto! ¡Bien hecho!
+      </div>
+      <div *ngIf="!isCorrect" class="feedback-incorrect">
+        <span class="feedback-icon">✗</span> Incorrecto. ¡Revisa la explicación!
+      </div>
+    </div>
+  </div>
+
+  <ng-template #results>
+    <div class="results-container">
+      <div class="results-header">
+        <div class="results-icon">🎉</div>
+        <h2 class="results-title">¡Juego Completado!</h2>
+        <p class="results-subtitle">Aquí están tus resultados</p>
+      </div>
+
+      <div class="score-summary">
+        <div class="final-score">
+          <div class="final-score-value">{{ score }}</div>
+          <div class="final-score-label">Puntuación Final</div>
+        </div>
+        
+        <div class="percentage-circle">
+          <div class="circle-background"></div>
+          <div class="circle-progress" [style.transform]="'rotate(' + (getScorePercentage() * 3.6) + 'deg)'"></div>
+          <div class="circle-text">{{ getScorePercentage() }}%</div>
+        </div>
+        
+        <div class="accuracy">
+          <div class="accuracy-value">{{ getScorePercentage() }}%</div>
+          <div class="accuracy-label">Precisión</div>
+        </div>
+      </div>
+
+      <div class="level-badge">
+        <div class="badge-text">
+          <div *ngIf="getScorePercentage() >= 90" class="level-advanced">
+             ¡Excelente! Nivel Avanzado
+          </div>
+          <div *ngIf="getScorePercentage() >= 70 && getScorePercentage() < 90" class="level-intermediate">
+             ¡Muy Bien! Nivel Intermedio
+          </div>
+          <div *ngIf="getScorePercentage() >= 50 && getScorePercentage() < 70" class="level-basic">
+             ¡Buen Trabajo! Nivel Básico
+          </div>
+          <div *ngIf="getScorePercentage() < 50" class="level-beginner">
+             ¡Sigue Practicando! Nivel Principiante
+          </div>
+        </div>
+      </div>
+
+      <div class="results-actions">
+        <button class="restart-btn" (click)="resetGame()">
+          <span class="restart-icon">🔄</span>
+          Jugar Otra Vez
+        </button>
+      </div>
+
+      <div class="encouragement">
+        <p>"¡La práctica hace al maestro! Sigue aprendiendo inglés todos los días."</p>
+      </div>
+    </div>
+  </ng-template>
 </div>
-
-<script>
-    const quiz = [
-        {
-            pregunta: "¿Cuál es la capital de Francia?",
-            opciones: ["Madrid", "Roma", "París", "Berlín"],
-            correcta: 2
-        },
-        {
-            pregunta: "¿Cuántos planetas hay en el sistema solar?",
-            opciones: ["7", "8", "9", "5"],
-            correcta: 1
-        },
-        {
-            pregunta: "¿Quién pintó la Mona Lisa?",
-            opciones: ["Picasso", "Leonardo da Vinci", "Van Gogh", "Rembrandt"],
-            correcta: 1
-        }
-    ];
-
-    let index = 0;
-
-    function cargarPregunta() {
-        document.getElementById("question").innerHTML = quiz[index].pregunta;
-        let btns = document.querySelectorAll(".answer-btn");
-
-        btns.forEach((btn, i) => {
-            btn.innerHTML = quiz[index].opciones[i];
-            btn.classList.remove("correct", "incorrect");
-            btn.style.pointerEvents = "auto";
-        });
-    }
-
-    function checkAnswer(i) {
-        let btns = document.querySelectorAll(".answer-btn");
-
-        if (i === quiz[index].correcta) {
-            btns[i].classList.add("correct");
-        } else {
-            btns[i].classList.add("incorrect");
-            btns[quiz[index].correcta].classList.add("correct");
-        }
-
-
-        btns.forEach(btn => btn.style.pointerEvents = "none");
-
-
-        setTimeout(() => {
-            index++;
-            if (index < quiz.length) {
-                cargarPregunta();
-            } else {
-                document.getElementById("question").innerHTML = "¡Has terminado el simulador!";
-                document.getElementById("answers").innerHTML = "";
-            }
-        }, 1200);
-    }
-
-    cargarPregunta();
-</script>
-
-

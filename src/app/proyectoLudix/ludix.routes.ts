@@ -20,6 +20,10 @@ export default [
         .then(m => m.VistaSignUpComponent)
   },
   {
+   path: 'test',
+    loadComponent: () => import('./vista-test/vista-test.component')
+  },
+  {
     path: 'perfil',
     loadComponent: () =>
       import('./vista-perfil/vista-perfil.component')

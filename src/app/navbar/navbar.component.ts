@@ -8,5 +8,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+score: any;
+getScorePercentage() {
+throw new Error('Method not implemented.');
+}
+shareResults() {
+throw new Error('Method not implemented.');
+}
+resetGame() {
+throw new Error('Method not implemented.');
+}
 
 }
