@@ -7,12 +7,12 @@ export default [
       import('./vista-home/vista-home.component')
         .then(m => m.VistaHomeComponent)
   },
- {
-  path: 'login',
-  loadComponent: () =>
-    import('./vista-login/vista-login.component')
-      .then(m => m.VistaLoginComponent)
-},
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./vista-login/vista-login.component')
+        .then(m => m.VistaLoginComponent)
+  },
   {
     path: 'signup',
     loadComponent: () =>
@@ -20,7 +20,7 @@ export default [
         .then(m => m.VistaSignUpComponent)
   },
   {
-   path: 'test',
+    path: 'test',
     loadComponent: () => import('./vista-test/vista-test.component')
   },
   {
@@ -40,5 +40,11 @@ export default [
     loadComponent: () =>
       import('./vista-admin/vista-admin.component')
         .then(m => m.VistaAdminComponent)
+  },
+  {
+    path: 'videos',
+    loadComponent: () =>
+      import('./vista-videos/vista-videos.component')
+        .then(m => m.VistaVideosComponent)
   }
 ] as Routes;
