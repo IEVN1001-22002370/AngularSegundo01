@@ -1,17 +1,23 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 
 export default [
   {
-    path: 'home',
-    loadComponent: () => import('./vista-home/vista-home.component')
+    path: 'vista-home',
+    loadComponent: () =>
+      import('./vista-home/vista-home.component')
+        .then(m => m.VistaHomeComponent)
   },
-  {
-    path: 'login',
-    loadComponent: () => import('./vista-login/vista-login.component')
-  },
+ {
+  path: 'login',
+  loadComponent: () =>
+    import('./vista-login/vista-login.component')
+      .then(m => m.VistaLoginComponent)
+},
   {
     path: 'signup',
-    loadComponent: () => import('./vista-sign-up/vista-sign-up.component')
+    loadComponent: () =>
+      import('./vista-sign-up/vista-sign-up.component')
+        .then(m => m.VistaSignUpComponent)
   },
   {
    path: 'test',
@@ -19,7 +25,8 @@ export default [
   },
   {
     path: 'perfil',
-    loadComponent: () => import('./vista-perfil/vista-perfil.component')
-      .then(m => m.VistaPerfilComponent)
+    loadComponent: () =>
+      import('./vista-perfil/vista-perfil.component')
+        .then(m => m.VistaPerfilComponent)
   }
 ] as Routes;
