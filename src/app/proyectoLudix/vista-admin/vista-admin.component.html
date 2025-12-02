@@ -1,74 +1,89 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Panel de opciones</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #f9fafb;
-      color: #111827;
-    }
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 240px;
-      background: #cfcfcf;
-      border-right: 1px solid #e5e7eb;
-      padding: 24px;
-    }
-    .sidebar h2 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 16px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .sidebar li {
-      padding: 8px 0;
-      border-bottom: 1px solid #e5e7eb;
-      font-size: 15px;
-      color: #374151;
-    }
-    .content {
-      flex: 1;
-      padding: 32px;
-      background: #f3f4f6;
-      font-size: 18px;
-      font-weight: 500;
-    }
-  </style>
-</head>
-<body>
+<div class="admin-container">
 
-  <div class="layout">
-    <aside class="sidebar">
-      <h2>Panel de opciones</h2>
-      <ul>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-      </ul>
-    </aside>
-    <main class="content">
-      Opciones relacionadas
-    </main>
-  </div>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="sidebar-title">Panel Admin</h2>
 
-</body>
-</html>
+    <ul class="menu">
+      <li (click)="selectSection('dashboard')" [class.active]="section === 'dashboard'">
+        🏠 Dashboard
+      </li>
+
+      <li (click)="selectSection('analytics')" [class.active]="section === 'analytics'">
+        📊 Analítica
+      </li>
+
+
+      <li (click)="selectSection('posts')" [class.active]="section === 'posts'">
+        ✍️ Entradas
+      </li>
+
+      <li (click)="selectSection('media')" [class.active]="section === 'media'">
+        🖼️ Multimedia
+      </li>
+
+      <li (click)="selectSection('users')" [class.active]="section === 'users'">
+        👥 Usuarios
+      </li>
+
+      <li (click)="selectSection('settings')" [class.active]="section === 'settings'">
+        ⚙️ Configuración
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <header class="header">
+      <h1>{{ title }}</h1>
+    </header>
+
+    <!-- CONTENIDO DINÁMICO -->
+
+    <!-- DASHBOARD -->
+    <section *ngIf="section === 'dashboard'">
+      <h2>Resumen general</h2>
+      <p>Bienvenido al panel de administración.</p>
+
+      <div class="dashboard-widgets">
+        <div class="widget">Entradas: 12</div>
+        <div class="widget">Usuarios: 5</div>
+        <div class="widget">Media: 48 archivos</div>
+      </div>
+    </section>
+
+    <!-- Analytics -->
+    <section *ngIf="section === 'analytics'">
+      <app-vista-analytics></app-vista-analytics>
+    </section>
+
+
+    <!-- POSTS -->
+    <section *ngIf="section === 'posts'">
+      <h2>Gestión de Entradas</h2>
+      <button class="btn">Crear Nueva Entrada</button>
+      <p>Listado de entradas próximamente…</p>
+    </section>
+
+    <!-- MEDIA -->
+    <section *ngIf="section === 'media'">
+      <h2>Biblioteca Multimedia</h2>
+      <p>Aquí podrás gestionar tus imágenes y videos.</p>
+    </section>
+
+    <!-- USERS -->
+    <section *ngIf="section === 'users'">
+      <h2>Usuarios</h2>
+      <p>Administración de usuarios próximamente…</p>
+    </section>
+
+    <!-- SETTINGS -->
+    <section *ngIf="section === 'settings'">
+      <h2>Configuración</h2>
+      <p>Opciones del sistema próximamente…</p>
+    </section>
+
+  </main>
+
+</div>

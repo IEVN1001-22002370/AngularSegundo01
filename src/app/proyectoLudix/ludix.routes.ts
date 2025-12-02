@@ -34,5 +34,11 @@ export default [
     loadComponent: () =>
       import('./vista-recuperar/vista-recuperar.component')
         .then(m => m.VistaRecuperarComponent)
+  },
+  {
+    path: 'admin',
+    loadComponent: () =>
+      import('./vista-admin/vista-admin.component')
+        .then(m => m.VistaAdminComponent)
   }
 ] as Routes;
