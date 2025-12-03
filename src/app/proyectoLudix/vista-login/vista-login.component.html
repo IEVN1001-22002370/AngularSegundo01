@@ -6,13 +6,13 @@
       <form class="form-row" (ngSubmit)="onSubmit()">
 
         <div>
-          <label class="small">Nombre de Usuario</label>
+          <label class="small">Correo</label>
           <div class="input-icon">
             <input
-              type="text"
-              placeholder="nombre"
-              name="usuario"
-              [(ngModel)]="usuario"
+              type="email"
+              placeholder="correo"
+              name="correo"
+              [(ngModel)]="correo"
               required>
           </div>
         </div>
@@ -23,15 +23,13 @@
             <input
               type="password"
               placeholder="contraseña"
-              name="contrasena"
-              [(ngModel)]="contrasena"
+              name="contrasenia"
+              [(ngModel)]="contrasenia"
               required>
           </div>
         </div>
 
-        <label class="check-row">
-          <input type="checkbox"> Mantenerme conectado
-        </label>
+
 
         <div class="center">
           <button class="btn" type="submit">Entrar</button>

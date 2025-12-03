@@ -8,37 +8,41 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './vista-login.component.html',
   styleUrl: './vista-login.component.css',
   standalone: true,
-  imports: [FormsModule]   // ← NECESARIO PARA ngModel
+  imports: [FormsModule]
 })
 export class VistaLoginComponent {
 
-  usuario: string = "";
-  contrasena: string = "";
+  correo: string = "";
+  contrasenia: string = "";
   errorMsg: string = "";
 
   constructor(private api: ProyectoapiService, private router: Router) {}
 
   onSubmit() {
-
-    if (!this.usuario || !this.contrasena) {
-      this.errorMsg = "Completa todos los campos";
+    if (!this.correo || !this.contrasenia) {
+      this.errorMsg = "Completa todos los campos.";
       return;
     }
 
     const datos = {
-      usuario: this.usuario,          // aquí va el correo realmente
-      contrasenia: this.contrasena
+      correo: this.correo,
+      contrasenia: this.contrasenia
     };
 
     this.api.login(datos).subscribe((resp: any) => {
+
       if (resp.exito) {
-
+        // Guardar sesión
         localStorage.setItem("usuario", JSON.stringify(resp.usuario));
-        this.router.navigate(['/proyectoLudix/perfil']);
 
+        // Redirigir
+        this.router.navigate(['/proyectoLudix/perfil']);
       } else {
         this.errorMsg = resp.mensaje;
       }
+
+    }, err => {
+      this.errorMsg = "Error al conectar con el servidor.";
     });
   }
 }
