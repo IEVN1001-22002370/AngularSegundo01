@@ -32,4 +32,9 @@ public EliminaAlumno(mat:number):Observable<AlumnosUtl>{
   return this.http.delete<AlumnosUtl>('http://127.0.0.1:5000/alumnos/'+mat)
 }
 
+registrarUsuario(datos: any) {
+  return this.http.post('http://127.0.0.1:5000/usuarios', datos);
+}
+
+
 }

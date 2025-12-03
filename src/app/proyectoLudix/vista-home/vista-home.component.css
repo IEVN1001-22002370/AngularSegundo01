@@ -1,0 +1,90 @@
+body {
+  font-family: Inter, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #fafafa;
+  color: #333;
+}
+
+/* Títulos */
+h2 {
+  font-family: 'Merriweather', serif;
+  text-align: center;
+  margin: 40px 0 15px;
+  font-size: 28px;
+  color: #1f2937;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Contenedor general */
+.section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 25px 30px;
+  text-align: center;
+}
+
+.section p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+/* Botones */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin: 35px 0;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #fbbf24, #fb923c);
+  padding: 14px 40px;
+  border-radius: 12px;
+  border: none;
+  color: #1f2937;
+  font-weight: 700;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  box-shadow: 0 4px 15px rgba(251, 146, 60, 0.3);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #f59e0b, #f97316);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(249, 115, 22, 0.25);
+}
+
+/* Caja gris (si la usas en otra parte) */
+.gray-box {
+  background: #e5e7eb;
+  padding: 35px 25px;
+  margin-top: 50px;
+  border-radius: 10px;
+}
+
+.gray-box p {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #374151;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .section {
+    padding: 18px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .btn-primary {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+  }
+}

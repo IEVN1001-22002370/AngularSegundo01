@@ -1,74 +1,72 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Panel de opciones</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #f9fafb;
-      color: #111827;
-    }
-    .layout {
-      display: flex;
-      min-height: 100vh;
-    }
-    .sidebar {
-      width: 240px;
-      background: #cfcfcf;
-      border-right: 1px solid #e5e7eb;
-      padding: 24px;
-    }
-    .sidebar h2 {
-      font-size: 18px;
-      font-weight: bold;
-      margin-bottom: 16px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .sidebar li {
-      padding: 8px 0;
-      border-bottom: 1px solid #e5e7eb;
-      font-size: 15px;
-      color: #374151;
-    }
-    .content {
-      flex: 1;
-      padding: 32px;
-      background: #f3f4f6;
-      font-size: 18px;
-      font-weight: 500;
-    }
-  </style>
-</head>
-<body>
-
+<section>
   <div class="layout">
+
+    <!-- Sidebar -->
     <aside class="sidebar">
-      <h2>Panel de opciones</h2>
-      <ul>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
-        <li>Lorem</li>
+      <h2>Admin Panel</h2>
+      <ul class="menu">
+        <li class="active">Usuarios</li>
+        <li>Reportes</li>
+        <li>Control</li>
+        <li>Ajustes</li>
       </ul>
     </aside>
-    <main class="content">
-      Opciones relacionadas
-    </main>
-  </div>
 
-</body>
-</html>
+    <!-- Contenido principal -->
+    <main class="content">
+      <h1>Administración de Usuarios</h1>
+
+      <!-- Tabla -->
+      <div class="table-container">
+        <table class="tabla-usuarios">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellidos</th>
+              <th>Correo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let user of usuarios">
+              <td>{{user.id}}</td>
+              <td>{{user.nombre}}</td>
+              <td>{{user.apellidos}}</td>
+              <td>{{user.correo}}</td>
+              <td>
+                <button class="btn-edit" (click)="seleccionarUsuario(user)">Editar</button>
+                <button class="btn-delete" (click)="eliminar(user.id)">Eliminar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Formulario de edición -->
+      <div class="edit-card" *ngIf="usuarioSeleccionado">
+        <h2>Editar Usuario</h2>
+
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="usuarioSeleccionado.nombre">
+
+        <label>Apellidos:</label>
+        <input type="text" [(ngModel)]="usuarioSeleccionado.apellidos">
+
+        <label>Correo:</label>
+        <input type="email" [(ngModel)]="usuarioSeleccionado.correo">
+
+        <label>Contraseña:</label>
+        <input type="password" [(ngModel)]="usuarioSeleccionado.contrasenia">
+
+        <div class="edit-buttons">
+          <button class="btn-save" (click)="guardarCambios()">Guardar</button>
+          <button class="btn-cancel" (click)="cancelarEdicion()">Cancelar</button>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+</section>

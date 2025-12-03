@@ -1,141 +1,223 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Test de Inglés - Ludix</title>
-
-<style>
-    body{
-        font-family: Arial, sans-serif;
-        background:#f5f5f5;
-        margin:0;
-        padding:0;
-        display:flex;
-        justify-content:center;
-    }
-
-    .wrapper{
-        width:1100px;
-        background:white;
-        min-height:100vh;
-        box-shadow:0 0 10px rgba(0,0,0,0.1);
-    }
+<div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-4 md:p-8">
+  <div class="max-w-4xl mx-auto">
 
 
-    .navbar{
-        background:#e8d3bd;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:15px 40px;
-    }
-
-    .navbar .logo{
-        font-size:26px;
-        font-weight:bold;
-        color:#4a2d24;
-    }
-
-    .navbar .links{
-        display:flex;
-        gap:35px;
-        font-size:15px;
-        color:#4a2d24;
-    }
-
-    .navbar .icons{
-        display:flex;
-        gap:20px;
-        font-size:20px;
-        cursor:pointer;
-    }
+    <header class="text-center mb-10">
+      <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl mb-4 shadow-lg">
+        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+        </svg>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-2">
+        Test de Nivel de Inglés
+      </h1>
+      <p class="text-gray-600 text-lg">
+        Completa este test corto para descubrir tu nivel de inglés
+      </p>
 
 
-    .container{
-        display:flex;
-        justify-content:space-between;
-        padding:40px;
-        gap:25px;
-    }
+      <div *ngIf="!testFinished" class="mt-8 max-w-2xl mx-auto">
+        <div class="flex justify-between text-sm text-gray-600 mb-1">
+          <span>Progreso</span>
+          <span>{{ getAnsweredCount() }}/{{ totalQuestions }}</span>
+        </div>
+        <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+          <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500 transition-all duration-500"
+               [style.width.%]="getProgress()"></div>
+        </div>
+      </div>
+    </header>
 
 
-    .pregunta-box{
-        background:#e9cdcd;
-        width:70%;
-        height:340px;
-        padding:20px;
-        border-radius:6px;
-        text-align:center;
-        font-size:18px;
-        color:#333;
-    }
+    <div *ngIf="!testFinished; else results" class="space-y-6">
 
 
-    .score-box{
-        background:#eddcc7;
-        width:25%;
-        height:340px;
-        padding:20px;
-        border-radius:6px;
-        text-align:center;
-        font-size:18px;
-        color:#333;
-    }
+      <div *ngFor="let q of questions; let i = index"
+           class="bg-white rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-shadow duration-300">
 
 
-    .buttons{
-        display:flex;
-        justify-content:center;
-        gap:50px;
-        margin-top:20px;
-    }
-
-    .btn{
-        padding:12px 35px;
-        background:#1f74ff;
-        color:white;
-        border:none;
-        border-radius:4px;
-        cursor:pointer;
-        font-size:15px;
-    }
-
-    .btn:hover{
-        background:#0059d4;
-    }
-
-</style>
-</head>
-
-<body>
-
-<div class="wrapper">
-
-    <div class="container">
-
-        <div style="width:70%;">
-            <div class="pregunta-box">
-                <b>Pregunta</b>
-                <br><br>
-
-            </div>
-
-            <div class="buttons">
-                <button class="btn">Opcion 1</button>
-                <button class="btn">opcion 2</button>
-            </div>
+        <div class="flex items-start mb-6">
+          <div class="flex-shrink-0 w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center font-bold mr-4">
+            {{ i + 1 }}
+          </div>
+          <h3 class="text-xl font-semibold text-gray-800 leading-tight">
+            {{ q.text }}
+          </h3>
         </div>
 
-        <div class="score-box">
-            <b>Puntuación</b>
-            <br><br>
 
+        <div class="space-y-3">
+          <label *ngFor="let op of q.options"
+                 class="flex items-center p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer"
+                 [class.border-blue-500]="q.selected === op"
+                 [class.bg-blue-50]="q.selected === op"
+                 [class.border-gray-200]="q.selected !== op"
+                 [class.hover:border-blue-300]="q.selected !== op">
+
+            <input type="radio"
+                   name="question{{i}}"
+                   [value]="op"
+                   [(ngModel)]="q.selected"
+                   class="hidden">
+
+
+            <div class="flex-shrink-0 w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center"
+                 [class.border-blue-500]="q.selected === op"
+                 [class.border-gray-300]="q.selected !== op">
+              <div *ngIf="q.selected === op"
+                   class="w-3 h-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-500"></div>
+            </div>
+
+
+            <span class="text-gray-700 text-lg">{{ op }}</span>
+
+
+            <span *ngIf="q.selected === op" class="ml-auto text-blue-500">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </label>
         </div>
 
+
+        <div *ngIf="q.selected" class="mt-4 p-3 bg-green-50 border border-green-200 rounded-lg">
+          <div class="flex items-center text-green-700">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+            <span>Respuesta seleccionada</span>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="sticky bottom-6 mt-10 bg-white rounded-2xl shadow-lg p-6">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+          <div class="text-gray-600">
+            <span class="font-semibold text-green-600">{{ getAnsweredCount() }}</span> de
+            <span class="font-semibold">{{ totalQuestions }}</span> preguntas respondidas
+          </div>
+          <button class="btn-submit w-full md:w-auto"
+                  (click)="submitTest()"
+                  [disabled]="!allQuestionsAnswered()"
+                  [class.opacity-50]="!allQuestionsAnswered()"
+                  [class.cursor-not-allowed]="!allQuestionsAnswered()">
+            <span *ngIf="allQuestionsAnswered(); else notReady">
+              Ver Mi Nivel de Inglés
+            </span>
+            <ng-template #notReady>
+              Completa todas las preguntas para continuar
+            </ng-template>
+            <svg class="w-5 h-5 ml-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
 
-</div>
 
-</body>
-</html>
+    <ng-template #results>
+      <div class="bg-white rounded-3xl shadow-2xl overflow-hidden max-w-2xl mx-auto">
+
+
+        <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white p-8 text-center">
+          <div class="w-24 h-24 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="text-4xl">{{ getLevelIcon() }}</span>
+          </div>
+          <h2 class="text-3xl font-bold mb-2">¡Test Completado!</h2>
+          <p class="text-blue-100">Aquí están tus resultados</p>
+        </div>
+
+
+        <div class="p-8 text-center">
+          <p class="text-gray-600 text-lg mb-4">Tu nivel de inglés es:</p>
+
+
+          <div class="inline-block px-8 py-4 rounded-full text-2xl font-bold mb-4 shadow-lg"
+               [ngClass]="getLevelColor()">
+            {{ getLevelIcon() }} {{ level }}
+          </div>
+
+
+          <div class="mb-6 p-4 bg-gray-50 rounded-xl">
+            <p class="text-gray-700">{{ getLevelDescription() }}</p>
+          </div>
+
+
+          <div class="relative w-48 h-48 mx-auto mb-8">
+            <svg class="w-full h-full transform -rotate-90">
+
+              <circle cx="96" cy="96" r="80" stroke="#e5e7eb" stroke-width="16" fill="none" />
+
+              <circle cx="96" cy="96" r="80"
+                      [attr.stroke]="getScoreColor()"
+                      stroke-width="16"
+                      fill="none"
+                      stroke-linecap="round"
+                      [attr.stroke-dasharray]="2 * Math.PI * 80"
+                      [attr.stroke-dashoffset]="2 * Math.PI * 80 * (1 - score/totalQuestions)" />
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <span class="text-5xl font-bold text-gray-800">{{ score }}/{{ totalQuestions }}</span>
+              <span class="text-gray-600">Respuestas Correctas</span>
+            </div>
+          </div>
+
+
+          <div class="mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-3 text-left">Recomendación:</h3>
+            <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6" [innerHTML]="getRecommendation()"></div>
+          </div>
+
+          <div class="mb-8" *ngIf="showExplanations">
+            <h3 class="text-xl font-bold text-gray-800 mb-4 text-left">Explicaciones:</h3>
+            <div class="space-y-4">
+              <div *ngFor="let q of questions; let i = index"
+                   class="p-4 bg-gray-50 rounded-lg">
+                <p class="font-semibold text-gray-800 mb-2">Pregunta {{ i + 1 }}:</p>
+                <p class="text-gray-700 mb-1">{{ q.explanation }}</p>
+                <p class="text-sm text-gray-600">
+                  Tu respuesta: <span [class.text-green-600]="q.selected === q.correct"
+                                       [class.text-red-600]="q.selected !== q.correct">
+                    {{ q.selected || 'No respondida' }}
+                  </span>
+                  | Correcta: <span class="text-green-600 font-semibold">{{ q.correct }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="flex flex-col sm:flex-row gap-4 mb-6">
+            <button class="btn-restart" (click)="restart()">
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Hacer Test Nuevamente
+            </button>
+            <button class="btn-explanations" (click)="toggleExplanations()">
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              {{ showExplanations ? 'Ocultar Explicaciones' : 'Ver Explicaciones' }}
+            </button>
+          </div>
+
+
+          <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-3">¡Comparte tus resultados!</h3>
+            <p class="text-gray-600 mb-4">Motiva a tus amigos a aprender inglés contigo.</p>
+            <button class="btn-share" (click)="shareResults()">
+              <svg class="w-5 h-5 mr-2 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+              </svg>
+              Compartir en Redes Sociales
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

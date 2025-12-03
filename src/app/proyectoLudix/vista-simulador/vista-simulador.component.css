@@ -1,0 +1,44 @@
+.sim-container {
+        max-width: 750px;
+        margin: 40px auto;
+        background: #e6e6e6;
+        padding: 40px;
+        border-radius: 25px;
+        text-align: center;
+        box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
+    }
+
+    .sim-title {
+        background: #f3f7c5;
+        padding: 15px;
+        border-radius: 10px;
+        font-size: 22px;
+        margin-bottom: 30px;
+        font-weight: bold;
+    }
+
+    .answer-btn {
+        display: inline-block;
+        background: #1a73e8;
+        color: white;
+        padding: 12px 20px;
+        margin: 10px 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 40%;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+
+    .answer-btn:hover {
+        background: #166bd6;
+        transform: scale(1.05);
+    }
+
+    .correct {
+        background: #44c767 !important;
+    }
+
+    .incorrect {
+        background: #e63946 !important;
+    }

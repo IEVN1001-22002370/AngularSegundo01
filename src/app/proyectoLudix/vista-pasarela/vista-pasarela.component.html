@@ -1,171 +1,100 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pasarela de Pago - Ludix</title>
+<section>
+  <div class="wrapper">
 
-<style>
-
-    body{
-        font-family: Arial, sans-serif;
-        background:#f5f5f5;
-        margin:0;
-        padding:0;
-        display:flex;
-        justify-content:center;
-    }
-
-    .wrapper{
-        width:1100px;
-        background:white;
-        min-height:100vh;
-        box-shadow:0 0 10px rgba(0,0,0,0.1);
-    }
-
-
-    .navbar{
-        background:#e8d3bd;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-        padding:15px 40px;
-    }
-
-    .navbar .logo{
-        font-size:26px;
-        font-weight:bold;
-        color:#4a2d24;
-    }
-
-    .navbar .links{
-        display:flex;
-        gap:35px;
-        font-size:15px;
-        color:#4a2d24;
-    }
-
-    .navbar .icons{
-        display:flex;
-        gap:20px;
-        font-size:20px;
-        cursor:pointer;
-    }
-
-
-    .section-title{
-        background:#e8e6e6;
-        padding:10px 20px;
-        font-weight:bold;
-        margin-top:25px;
-        font-size:18px;
-    }
-
-    .payment-options{
-        display:flex;
-        justify-content:space-between;
-        padding:30px 40px;
-        gap:40px;
-    }
-
-
-    .option-box{
-        background:#e3dedf;
-        width:48%;
-        height:160px;
-        border-radius:8px;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        cursor:pointer;
-        transition:0.2s;
-    }
-
-    .option-box img{
-        width:100px;
-        opacity:0.8;
-    }
-
-    .option-box:hover{
-        background:#d4cecf;
-    }
-
-
-    .product-container{
-        padding:30px 40px;
-        display:flex;
-        justify-content:flex-start;
-    }
-
-    .product-box{
-        background:#e3dedf;
-        width:220px;
-        height:160px;
-        border-radius:8px;
-        display:flex;
-        justify-content:center;
-        align-items:center;
-    }
-
-    .product-box img{
-        width:110px;
-        opacity:0.9;
-    }
-
-
-    .buy-button{
-        margin-left:40px;
-        margin-top:10px;
-    }
-
-    .btn{
-        padding:12px 35px;
-        background:#1f74ff;
-        color:white;
-        border:none;
-        border-radius:6px;
-        cursor:pointer;
-        font-size:15px;
-    }
-
-    .btn:hover{
-        background:#0059d4;
-    }
-
-</style>
-</head>
-
-<body>
-
-<div class="wrapper">
-
-
+    <!-- Seleccionar método -->
     <div class="section-title">Método de pago</div>
 
     <div class="payment-options">
-        <div class="option-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/196/196561.png">
-        </div>
+      <button
+        class="option-btn"
+        [class.selected]="metodo === 'tarjeta'"
+        (click)="seleccionarMetodo('tarjeta')">
+        Tarjeta bancaria
+      </button>
 
-        <div class="option-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/455/455705.png">
-        </div>
+      <button
+        class="option-btn"
+        [class.selected]="metodo === 'oxxo'"
+        (click)="seleccionarMetodo('oxxo')">
+        Pago en tienda (OXXO)
+      </button>
+
+      <button
+        class="option-btn"
+        [class.selected]="metodo === 'transferencia'"
+        (click)="seleccionarMetodo('transferencia')">
+        Transferencia
+      </button>
     </div>
 
 
-    <div class="section-title">Tu producto</div>
+    <!-- Registrar tarjeta -->
+    <div *ngIf="metodo === 'tarjeta'" class="card-form">
 
-    <div class="product-container">
-        <div class="product-box">
-            <img src="https://cdn-icons-png.flaticon.com/512/2907/2907253.png">
+      <div class="section-title">Registrar tarjeta</div>
+
+      <label>Número de tarjeta</label>
+      <input type="text" maxlength="16" [(ngModel)]="tarjeta.numero">
+
+      <label>Nombre del titular</label>
+      <input type="text" [(ngModel)]="tarjeta.nombre">
+
+      <div class="row">
+        <div>
+          <label>Mes (MM)</label>
+          <input type="text" maxlength="2" [(ngModel)]="tarjeta.mes">
         </div>
+
+        <div>
+          <label>Año (YY)</label>
+          <input type="text" maxlength="2" [(ngModel)]="tarjeta.anio">
+        </div>
+
+        <div>
+          <label>CVC</label>
+          <input type="text" maxlength="3" [(ngModel)]="tarjeta.cvc">
+        </div>
+      </div>
     </div>
 
-    <div class="buy-button">
-        <button class="btn">Confirmar compra</button>
-    </div>
+<!-- Mostrar referencia OXXO -->
+<div *ngIf="metodo === 'oxxo'" class="info-box">
+  <div class="section-title">Pago en tienda (OXXO)</div>
 
+  <p>Presenta esta referencia en tu tienda OXXO:</p>
+
+  <div class="datos">
+    {{ referenciaOxxo }}
+  </div>
 </div>
 
-</body>
-</html>
+
+<!-- Mostrar cuenta y CLABE de transferencia -->
+<div *ngIf="metodo === 'transferencia'" class="info-box">
+  <div class="section-title">Transferencia bancaria</div>
+
+  <p>Utiliza estos datos para realizar tu transferencia:</p>
+
+  <p><strong>Número de cuenta:</strong></p>
+  <div class="datos">
+    {{ cuentaTransfer }}
+  </div>
+
+  <p><strong>CLABE interbancaria:</strong></p>
+  <div class="datos">
+    {{ clabeTransfer }}
+  </div>
+</div>
+
+
+    <!-- Botón de compra -->
+    <div class="buy-button">
+      <button class="btn" (click)="realizarCompra()">Realizar compra</button>
+    </div>
+
+    <!-- Mensajes -->
+    <div *ngIf="error" class="error">⚠️ {{ error }}</div>
+    <div *ngIf="compraExitosa" class="success">✅ ¡Compra realizada con éxito!</div>
+
+  </div>
+</section>

@@ -1,19 +1,11 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  // {
-  //   path: 'auth',
-  //   loadChildren: () =>
-  //     import('./auth/features/auth.routes').then((m) => m.default),
-  // },
   {
-    path: 'home',
+    path: 'proyectoLudix',
     loadChildren: () =>
-      import('./utl/utl.routes').then((m) => m.default),
+      import('./proyectoLudix/ludix.routes').then((m) => m.default),
   },
-  // {
-  //   path: 'formularios',
-  //   loadChildren: () =>
-  //     import('./formularios/formularios.routes').then((m) => m.default),
-  // },
+   { path: '', redirectTo: 'proyectoLudix/vista-home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'proyectoLudix/vista-home' }
 ];

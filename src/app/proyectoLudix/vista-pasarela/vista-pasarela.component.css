@@ -1,0 +1,91 @@
+.wrapper {
+  max-width: 450px;
+  margin: auto;
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 20px;
+  margin: 20px 0 10px;
+  font-weight: bold;
+}
+
+.payment-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.option-btn {
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  background: #fafafa;
+  text-align: left;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.option-btn:hover {
+  background: #f0f0f0;
+}
+
+.selected {
+  border-color: orange;
+  background: #fff4e6;
+}
+
+.card-form {
+  margin-top: 15px;
+}
+
+.card-form label {
+  display: block;
+  font-size: 14px;
+  margin: 8px 0 4px;
+}
+
+.card-form input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.row div {
+  flex: 1;
+}
+
+.btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: orange;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #ffb347;
+}
+
+.error {
+  margin-top: 15px;
+  color: red;
+  font-weight: bold;
+}
+
+.success {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+}
