@@ -3,7 +3,7 @@
     <div class="card">
       <h1 class="title">Iniciar sesión</h1>
 
-      <form class="form-row">
+      <form class="form-row" (ngSubmit)="onSubmit()">
 
         <div>
           <label class="small">Nombre de Usuario</label>
@@ -12,6 +12,7 @@
               type="text"
               placeholder="nombre"
               name="usuario"
+              [(ngModel)]="usuario"
               required>
           </div>
         </div>
@@ -23,6 +24,7 @@
               type="password"
               placeholder="contraseña"
               name="contrasena"
+              [(ngModel)]="contrasena"
               required>
           </div>
         </div>
@@ -36,7 +38,7 @@
         </div>
 
         <div class="links">
-          <a routerLink="./proyectoLudix/recuperar">¿Olvidaste tu contraseña?</a>
+          <a routerLink="/proyectoLudix/recuperar">¿Olvidaste tu contraseña?</a>
           <a routerLink="/proyectoLudix/signup">Crear cuenta</a>
         </div>
 
