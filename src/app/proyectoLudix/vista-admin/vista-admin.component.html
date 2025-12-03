@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section>
   <div class="layout">
 
@@ -70,3 +71,94 @@
 
   </div>
 </section>
+=======
+<div class="admin-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h2 class="sidebar-title">Panel Admin</h2>
+
+    <ul class="menu">
+      <li (click)="selectSection('dashboard')" [class.active]="section === 'dashboard'">
+        🏠 Dashboard
+      </li>
+
+      <li (click)="selectSection('analytics')" [class.active]="section === 'analytics'">
+        📊 Analítica
+      </li>
+
+
+      <li (click)="selectSection('posts')" [class.active]="section === 'posts'">
+        ✍️ Entradas
+      </li>
+
+      <li (click)="selectSection('media')" [class.active]="section === 'media'">
+        🖼️ Multimedia
+      </li>
+
+      <li (click)="selectSection('users')" [class.active]="section === 'users'">
+        👥 Usuarios
+      </li>
+
+      <li (click)="selectSection('settings')" [class.active]="section === 'settings'">
+        ⚙️ Configuración
+      </li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <header class="header">
+      <h1>{{ title }}</h1>
+    </header>
+
+    <!-- CONTENIDO DINÁMICO -->
+
+    <!-- DASHBOARD -->
+    <section *ngIf="section === 'dashboard'">
+      <h2>Resumen general</h2>
+      <p>Bienvenido al panel de administración.</p>
+
+      <div class="dashboard-widgets">
+        <div class="widget">Entradas: 12</div>
+        <div class="widget">Usuarios: 5</div>
+        <div class="widget">Media: 48 archivos</div>
+      </div>
+    </section>
+
+    <!-- Analytics -->
+    <section *ngIf="section === 'analytics'">
+      <app-vista-analytics></app-vista-analytics>
+    </section>
+
+
+    <!-- POSTS -->
+    <section *ngIf="section === 'posts'">
+      <h2>Gestión de Entradas</h2>
+      <button class="btn">Crear Nueva Entrada</button>
+      <p>Listado de entradas próximamente…</p>
+    </section>
+
+    <!-- MEDIA -->
+    <section *ngIf="section === 'media'">
+      <h2>Biblioteca Multimedia</h2>
+      <p>Aquí podrás gestionar tus imágenes y videos.</p>
+    </section>
+
+    <!-- USERS -->
+    <section *ngIf="section === 'users'">
+      <h2>Usuarios</h2>
+      <p>Administración de usuarios próximamente…</p>
+    </section>
+
+    <!-- SETTINGS -->
+    <section *ngIf="section === 'settings'">
+      <h2>Configuración</h2>
+      <p>Opciones del sistema próximamente…</p>
+    </section>
+
+  </main>
+
+</div>
+>>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <section id="login" class="page login">
   <div class="wrapper">
     <div class="card">
@@ -44,3 +45,200 @@
     </div>
   </div>
 </section>
+=======
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ludix - Login</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Inter:wght@300;400;600&display=swap"
+      rel="stylesheet">
+    <style>
+    :root{
+      --beige:#ead6c3;
+      --card:#e9e9ea;
+      --muted:#bdb5b3;
+      --blue:#2085ff;
+      --radius:18px;
+      --maxw:520px;
+    }
+    *{box-sizing:border-box; margin:0; padding:0}
+    body{
+      font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      background:#fff;
+      color:#222;
+      display:flex;
+      justify-content:center;
+      padding:40px 16px;
+    }
+
+    /* Contenedor principal */
+    .wrapper{display:flex; justify-content:center; width:100%}
+    .card{
+      background-color:rgba(193,193,193,0.518);
+      border-radius:26px;
+      padding:30px 40px;
+      max-width:500px;
+      width:100%;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+    }
+    .title{
+      font-family:Merriweather, serif;
+      font-size:30px;
+      text-align:center;
+      margin-bottom:24px;
+    }
+
+    /* Formulario */
+    .form-row{
+      background-color:rgb(165,165,165);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      width:100%;
+      max-width:400px;
+      padding:20px;
+      border-radius:12px;
+    }
+    label.small{
+      font-size:13px;
+      color:#000;
+      margin-bottom:6px;
+    }
+    .input-icon{position:relative}
+    .input-icon input{
+      width:100%;
+      padding:12px 14px 12px 44px;
+      border-radius:12px;
+      border:none;
+      background:#d9d7d7;
+      outline:none;
+      color:#424242;
+    }
+    .input-icon .left-icon{
+      position:absolute;
+      left:12px;
+      top:50%;
+      transform:translateY(-50%);
+      width:18px;
+      height:18px;
+      opacity:1;
+    }
+    .input-icon .right-action{
+      position:absolute;
+      right:10px;
+      top:50%;
+      transform:translateY(-50%);
+      cursor:pointer;
+      opacity:0.7;
+    }
+    .check-row{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size:14px;
+      color:#000;
+    }
+
+    /* Botón */
+    .btn{
+      display:block;
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      background:var(--blue);
+      color:#000000;
+      font-weight:600;
+      font-size:16px;
+      border:none;
+      cursor:pointer;
+      margin-top:12px;
+    }
+    .center{
+      display:flex;
+      justify-content:center;
+    }
+
+    /* Links */
+    .links{
+      margin-top:14px;
+      font-size:13px;
+      color:#000;
+      display:flex;
+      justify-content:center;
+      gap:14px;
+    }
+  </style>
+  </head>
+  <body>
+    <main>
+      <!-- Login -->
+      <section id="login" class="page login">
+        <div class="wrapper">
+          <div class="card" role="region" aria-labelledby="login-title">
+            <h1 id="login-title" class="title">Iniciar sesión</h1>
+
+            <form class="form-row"
+              onsubmit="event.preventDefault(); alert('Enviar login');">
+              <div>
+                <label class="small" for="login-user">Nombre de Usuario</label>
+                <div class="input-icon">
+                  <!-- icono usuario -->
+                  <svg class="left-icon" viewBox="0 0 24 24" fill="none"
+                    xmlns="http://www.w3.org/2000/svg"><path
+                      d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5z"
+                      fill="#7b6f6f" /><path
+                      d="M4 20c0-3.314 2.686-6 6-6h4c3.314 0 6 2.686 6 6v1H4v-1z"
+                      fill="#7b6f6f" /></svg>
+                  <input id="login-user" type="text" placeholder="nombre"
+                    autocomplete="username" required>
+                </div>
+              </div>
+
+              <div>
+                <label class="small" for="login-pass">Contraseña</label>
+                <div class="input-icon">
+                  <svg class="left-icon" viewBox="0 0 24 24"><path
+                      d="M6 10v6h12v-6H6z" fill="#7b6f6f" /><path
+                      d="M8 10V8a4 4 0 1 1 8 0v2" fill="#7b6f6f" /></svg>
+                  <input id="login-pass" type="password"
+                    placeholder="contraseña" autocomplete="current-password"
+                    required>
+                  <span class="right-action"
+                    onclick="togglePassword('login-pass')"
+                    title="mostrar/ocultar">👁️</span>
+                </div>
+              </div>
+
+              <label class="check-row"><input type="checkbox"> Mantenerme
+                conectado</label>
+
+              <div class="center"><button class="btn"
+                  type="submit">Entrar</button></div>
+
+              <div class="links">
+                <a href="/proyectoLudix/recuperar">¿Olvidaste tu contraseña?</a>
+                <a href="/proyectoLudix/signup">Crear cuenta</a>
+
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+    function togglePassword(id){
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.type = el.type === 'password' ? 'text' : 'password';
+    }
+  </script>
+</body>
+</html>
+>>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
