@@ -31,8 +31,18 @@ export class ProyectoapiService {
     return this.http.put(`http://127.0.0.1:5000/usuarios/${id}`, datos);
   }
 
-  login(datos: any) {
-  return this.http.post('http://127.0.0.1:5000/login', datos);
-}
+  login(correo: string, contrasenia: string) {
+    return this.http.post('http://127.0.0.1:5000/login', {
+      correo,
+      contrasenia,
+    });
+  }
 
+  registrarReporte(reporte: any) {
+    return this.http.post('http://127.0.0.1:5000/reportes', reporte);
+  }
+
+  obtenerReporte() {
+    return this.http.get('http://127.0.0.1:5000/reportes');
+  }
 }

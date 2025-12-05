@@ -6,6 +6,7 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./proyectoLudix/ludix.routes').then((m) => m.default),
   },
-   { path: '', redirectTo: 'proyectoLudix/vista-home', pathMatch: 'full' },
-  { path: '**', redirectTo: 'proyectoLudix/vista-home' }
+  { path: '', redirectTo: 'proyectoLudix/home', pathMatch: 'full' },
+  { path: '**', redirectTo: 'proyectoLudix/home' }
+
 ];

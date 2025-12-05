@@ -1,48 +1,37 @@
 import { Component } from '@angular/core';
 import { ProyectoapiService } from '../proyectoapi.service';
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-vista-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './vista-login.component.html',
   styleUrl: './vista-login.component.css',
-  standalone: true,
-  imports: [FormsModule]
 })
 export class VistaLoginComponent {
-
-  correo: string = "";
-  contrasenia: string = "";
-  errorMsg: string = "";
+  correo: string = '';
+  contrasenia: string = '';
+  error: string = '';
 
   constructor(private api: ProyectoapiService, private router: Router) {}
 
   onSubmit() {
     if (!this.correo || !this.contrasenia) {
-      this.errorMsg = "Completa todos los campos.";
+      this.error = 'Debes llenar todos los campos';
       return;
     }
 
-    const datos = {
-      correo: this.correo,
-      contrasenia: this.contrasenia
-    };
-
-    this.api.login(datos).subscribe((resp: any) => {
-
+    this.api.login(this.correo, this.contrasenia).subscribe((resp: any) => {
       if (resp.exito) {
-        // Guardar sesión
-        localStorage.setItem("usuario", JSON.stringify(resp.usuario));
+        localStorage.setItem('usuario', JSON.stringify(resp.usuario));
 
-        // Redirigir
-        this.router.navigate(['/proyectoLudix/perfil']);
+        this.router.navigate(['/proyectoLudix/home']);
       } else {
-        this.errorMsg = resp.mensaje;
+        this.error = resp.mensaje;
       }
-
-    }, err => {
-      this.errorMsg = "Error al conectar con el servidor.";
     });
   }
 }

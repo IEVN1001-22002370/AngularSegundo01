@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ProyectoapiService } from '../proyectoapi.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink, RouterModule } from "@angular/router";
 
 @Component({
   selector: 'app-vista-admin',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink, RouterModule],
   templateUrl: './vista-admin.component.html',
   styleUrls: ['./vista-admin.component.css']
 })
