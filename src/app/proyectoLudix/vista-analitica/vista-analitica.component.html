@@ -1,61 +1,75 @@
-<div class="analytics-container">
+<div class="layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2>Admin Panel</h2>
+    <ul class="menu">
+      <li><a [routerLink]="['/proyectoLudix/admin']">Usuarios</a></li>
+      <li><a [routerLink]="['/proyectoLudix/analitica']">Analítica</a></li>
+      <li><a [routerLink]="['/proyectoLudix/reportes']">Reportes</a></li>
+      <li>Control</li>
+      <li>Ajustes</li>
+    </ul>
+  </aside>
 
-  <h1 class="title">Analítica del Sitio</h1>
+  <div class="analytics-container">
 
-  <div class="cards">
-    <div class="card">
-      <h3>Visitas Hoy</h3>
-      <p class="number">{{ visitsToday }}</p>
-    </div>
+    <h1 class="title">Analítica del Sitio</h1>
 
-    <div class="card">
-      <h3>Visitas este Mes</h3>
-      <p class="number">{{ visitsThisMonth }}</p>
-    </div>
-
-    <div class="card">
-      <h3>Duración Promedio</h3>
-      <p class="number">{{ avgVisitDuration }}</p>
-    </div>
-
-    <div class="card">
-      <h3>Rebote</h3>
-      <p class="number">{{ bounceRate }}</p>
-    </div>
-  </div>
-
-  <div class="chart-card">
-    <h2>Visitas por Día</h2>
-    <div class="chart-wrapper">
-      <canvas id="visitasChart"></canvas>
-    </div>
-  </div>
-
-  <div class="sources">
-    <h2>Fuentes de Tráfico</h2>
-
-    <div *ngFor="let src of trafficSources" class="source">
-      <span class="source-name">{{ src.nombre }}</span>
-
-      <div class="bar">
-        <div class="fill" [style.width.%]="src.percent"></div>
+    <div class="cards">
+      <div class="card">
+        <h3>Visitas Hoy</h3>
+        <p class="number">{{ visitsToday }}</p>
       </div>
 
-      <span class="percent">{{ src.percent }}%</span>
+      <div class="card">
+        <h3>Visitas este Mes</h3>
+        <p class="number">{{ visitsThisMonth }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Duración Promedio</h3>
+        <p class="number">{{ avgVisitDuration }}</p>
+      </div>
+
+      <div class="card">
+        <h3>Rebote</h3>
+        <p class="number">{{ bounceRate }}</p>
+      </div>
     </div>
+
+    <div class="chart-card">
+      <h2>Visitas por Día</h2>
+      <div class="chart-wrapper">
+        <canvas id="visitasChart"></canvas>
+      </div>
+    </div>
+
+    <div class="sources">
+      <h2>Fuentes de Tráfico</h2>
+
+      <div *ngFor="let src of trafficSources" class="source">
+        <span class="source-name">{{ src.nombre }}</span>
+
+        <div class="bar">
+          <div class="fill" [style.width.%]="src.percent"></div>
+        </div>
+
+        <span class="percent">{{ src.percent }}%</span>
+      </div>
+    </div>
+
+    <div class="popular-pages">
+      <h2>Páginas Populares</h2>
+
+      <ul>
+        <li *ngFor="let page of popularPages" class="page-item">
+
+          <span class="page-name">{{ page.pagina }}</span>
+          <strong class="page-views">{{ page.visitas }} visitas</strong>
+
+        </li>
+      </ul>
+    </div>
+
   </div>
-
-  <div class="popular-pages">
-    <h2>Páginas Populares</h2>
-
-    <ul>
-      <li *ngFor="let page of popularPages" class="page-item">
-
-        <span class="page-name">{{ page.pagina }}</span>
-        <strong class="page-views">{{ page.visitas }} visitas</strong>
-
-      </li>
-    </ul>
-  </div>
-
 </div>

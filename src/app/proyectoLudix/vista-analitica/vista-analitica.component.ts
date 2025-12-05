@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AnalyticsService } from '../../services/analytics.service';
 import Chart from 'chart.js/auto';
+import { RouterLink, RouterModule } from "@angular/router";
+
 
 @Component({
   selector: 'app-vista-analitica',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink, RouterModule],
   templateUrl: './vista-analitica.component.html',
   styleUrls: ['./vista-analitica.component.css']
 })
