@@ -10,11 +10,7 @@
   </div>
 
   <div *ngIf="!gameFinished; else results">
-<<<<<<< HEAD
 
-=======
-    
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
     <div class="sim-title">
       <div class="question-counter">
         Pregunta {{ currentQuestionIndex + 1 }} de {{ questions.length }}
@@ -69,21 +65,13 @@
           <div class="final-score-value">{{ score }}</div>
           <div class="final-score-label">Puntuación Final</div>
         </div>
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
         <div class="percentage-circle">
           <div class="circle-background"></div>
           <div class="circle-progress" [style.transform]="'rotate(' + (getScorePercentage() * 3.6) + 'deg)'"></div>
           <div class="circle-text">{{ getScorePercentage() }}%</div>
         </div>
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
         <div class="accuracy">
           <div class="accuracy-value">{{ getScorePercentage() }}%</div>
           <div class="accuracy-label">Precisión</div>
@@ -119,8 +107,5 @@
       </div>
     </div>
   </ng-template>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
+
