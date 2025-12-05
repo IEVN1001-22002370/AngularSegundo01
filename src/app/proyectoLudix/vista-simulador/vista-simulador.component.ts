@@ -1,4 +1,3 @@
-
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -136,14 +135,6 @@ export class VistaSimuladorComponent implements OnInit {
       this.score += 100;
     }
 
-    
-    this.selectedAnswer = index;
-    this.isCorrect = index === this.questions[this.currentQuestionIndex].correct;
-    
-    if (this.isCorrect) {
-      this.score += 100;
-    }
-    
     setTimeout(() => {
       this.showExplanation = true;
     }, 1000);
@@ -154,7 +145,6 @@ export class VistaSimuladorComponent implements OnInit {
     this.selectedAnswer = null;
     this.isCorrect = null;
 
-    
     if (this.currentQuestionIndex < this.questions.length - 1) {
       this.currentQuestionIndex++;
     } else {
@@ -168,16 +158,11 @@ export class VistaSimuladorComponent implements OnInit {
     const percentage = (this.score / (this.questions.length * 100)) * 100;
     let level = '';
 
-    
-    const percentage = (this.score / (this.questions.length * 100)) * 100;
-    let level = '';
-    
     if (percentage >= 90) level = "🌟 ¡Excelente! Nivel Avanzado";
     else if (percentage >= 70) level = "👍 ¡Muy bien! Nivel Intermedio";
     else if (percentage >= 50) level = "✅ ¡Buen trabajo! Nivel Básico";
     else level = "💪 ¡Sigue practicando! Nivel Principiante";
 
-    
     console.log(`Juego terminado! Puntuación: ${this.score}, Nivel: ${level}`);
   }
 
@@ -189,7 +174,6 @@ export class VistaSimuladorComponent implements OnInit {
     this.isCorrect = null;
     this.showExplanation = false;
 
-    
     this.shuffleQuestions();
   }
 
@@ -214,6 +198,7 @@ export class VistaSimuladorComponent implements OnInit {
 
   shareResults() {
     const message = `¡Acabo de completar el Mini Test de Inglés en Ludix! Obtuve ${this.score} puntos (${this.getScorePercentage()}% de aciertos). ¡Aprende inglés de forma divertida!`;
+
     if (navigator.share) {
       navigator.share({
         title: 'Mis resultados del Mini Test de Inglés',
@@ -226,4 +211,3 @@ export class VistaSimuladorComponent implements OnInit {
     }
   }
 }
-  

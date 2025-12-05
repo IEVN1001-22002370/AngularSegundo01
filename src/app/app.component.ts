@@ -1,38 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { initFlowbite } from 'flowbite';
 import { NavbarComponent } from "./navbar/navbar.component";
-<<<<<<< HEAD
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-=======
-import { VistaTestComponent } from "./proyectoLudix/vista-test/vista-test.component";
-import { VistaVideosComponent } from "./proyectoLudix/vista-videos/vista-videos.component";
-import { VistaSignUpComponent } from "./proyectoLudix/vista-sign-up/vista-sign-up.component";
-import { VistaSimuladorComponent } from "./proyectoLudix/vista-simulador/vista-simulador.component";
-import { VistaAdminComponent } from "./proyectoLudix/vista-admin/vista-admin.component";
-import { VistaContactoComponent } from "./proyectoLudix/vista-contacto/vista-contacto.component";
-import { VistaAnaliticaComponent } from "./proyectoLudix/vista-analitica/vista-analitica.component";
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
-
-
-// import { ZodiacoComponent } from "./formularios/zodiaco/zodiaco.component";
-// import { DistanciaComponent } from "./formularios/distancia/distancia.component";
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent],
+  // Si usas standalone components y tu app los necesita, añade los imports necesarios.
+  imports: [RouterOutlet, NavbarComponent, HttpClientModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'AngularSegundo01';
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     initFlowbite();
+
+    let isReload = false;
+    try {
+      const navEntries = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[];
+      if (navEntries && navEntries.length > 0) {
+        isReload = navEntries[0].type === 'reload';
+      } else if ((performance as any).navigation) {
+        isReload = (performance as any).navigation.type === 1;
+      }
+    } catch (e) {
+      console.warn('No se pudo detectar navigation type:', e);
+    }
+
+    if (isReload) {
+      localStorage.removeItem('descargaClick');
+      console.log('AppComponent: detectado RELOAD → borrada clave descargaClick');
+    } else {
+      console.log('AppComponent: no es reload → no borramos clave descargaClick');
+    }
   }
 }
-
-

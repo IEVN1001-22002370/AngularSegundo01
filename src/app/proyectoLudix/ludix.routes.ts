@@ -1,130 +1,104 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 
 export default [
   {
-<<<<<<< HEAD
     path: 'home',
     loadComponent: () =>
       import('./vista-home/vista-home.component').then(
-        m => m.VistaHomeComponent
-      )
-=======
-    path: 'vista-home',
-    loadComponent: () =>
-      import('./vista-home/vista-home.component')
-        .then(m => m.VistaHomeComponent)
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
+        (m) => m.VistaHomeComponent
+      ),
   },
   {
     path: 'login',
     loadComponent: () =>
-<<<<<<< HEAD
       import('./vista-login/vista-login.component').then(
-        m => m.VistaLoginComponent
-      )
-=======
-      import('./vista-login/vista-login.component')
-        .then(m => m.VistaLoginComponent)
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
+        (m) => m.VistaLoginComponent
+      ),
   },
   {
     path: 'signup',
     loadComponent: () =>
-<<<<<<< HEAD
       import('./vista-sign-up/vista-sign-up.component').then(
-        m => m.VistaSignUpComponent
-      )
-=======
-      import('./vista-sign-up/vista-sign-up.component')
-        .then(m => m.VistaSignUpComponent)
-  },
-  {
-    path: 'test',
-    loadComponent: () => import('./vista-test/vista-test.component')
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
+        (m) => m.VistaSignUpComponent
+      ),
   },
   {
     path: 'perfil',
     loadComponent: () =>
-<<<<<<< HEAD
       import('./vista-perfil/vista-perfil.component').then(
-        m => m.VistaPerfilComponent
-      )
+        (m) => m.VistaPerfilComponent
+      ),
   },
   {
     path: 'admin',
     loadComponent: () =>
       import('./vista-admin/vista-admin.component').then(
-        m => m.VistaAdminComponent
-      )
+        (m) => m.VistaAdminComponent
+      ),
   },
   {
     path: 'analitica',
     loadComponent: () =>
       import('./vista-analitica/vista-analitica.component').then(
-        m => m.VistaAnaliticaComponent
-      )
-=======
-      import('./vista-perfil/vista-perfil.component')
-        .then(m => m.VistaPerfilComponent)
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
+        (m) => m.VistaAnaliticaComponent
+      ),
   },
   {
     path: 'recuperar',
     loadComponent: () =>
-<<<<<<< HEAD
       import('./vista-recuperar/vista-recuperar.component').then(
-        m => m.VistaRecuperarComponent
-      )
-  },
-  {
-    path: 'contacto',
-    loadComponent: () =>
-      import('./vista-contacto/vista-contacto.component').then(
-        m => m.VistaContactoComponent
-      )
+        (m) => m.VistaRecuperarComponent
+      ),
   },
   {
     path: 'pasarela',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./vista-pasarela/vista-pasarela.component').then(
-        m => m.VistaPasarelaComponent
-      )
+        (m) => m.VistaPasarelaComponent
+      ),
   },
   {
     path: 'simulador',
     loadComponent: () =>
       import('./vista-simulador/vista-simulador.component').then(
-        m => m.VistaSimuladorComponent
-      )
+        (m) => m.VistaSimuladorComponent
+      ),
   },
   {
     path: 'test',
     loadComponent: () =>
       import('./vista-test/vista-test.component').then(
-        m => m.VistaTestComponent
-      )
-=======
-      import('./vista-recuperar/vista-recuperar.component')
-        .then(m => m.VistaRecuperarComponent)
-  },
-  {
-    path: 'admin',
-    loadComponent: () =>
-      import('./vista-admin/vista-admin.component')
-        .then(m => m.VistaAdminComponent)
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
+        (m) => m.VistaTestComponent
+      ),
   },
   {
     path: 'videos',
     loadComponent: () =>
-<<<<<<< HEAD
       import('./vista-videos/vista-videos.component').then(
-        m => m.VistaVideosComponent
-      )
-=======
-      import('./vista-videos/vista-videos.component')
-        .then(m => m.VistaVideosComponent)
->>>>>>> e673a0af3f5a2f1b4b70a71092620f6149e0ff18
-  }
+        (m) => m.VistaVideosComponent
+      ),
+  },
+  {
+    path: 'contacto',
+    loadComponent: () =>
+      import('./vista-contacto/vista-contacto.component').then(
+        (m) => m.VistaContactoComponent
+      ),
+  },
+  {
+    path: 'reportes',
+    loadComponent: () =>
+      import('./vista-reporte/vista-reporte.component').then(
+        (m) => m.VistaReporteComponent
+      ),
+  },
+  {
+    path: 'usuarios',
+    loadComponent: () =>
+      import('./vista-admin/vista-admin.component').then(
+        (m) => m.VistaAdminComponent
+      ),
+  },
 ] as Routes;

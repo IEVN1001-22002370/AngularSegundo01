@@ -1,0 +1,45 @@
+<section>
+  <div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2>Admin Panel</h2>
+      <ul class="menu">
+        <li><a [routerLink]="['/proyectoLudix/usuarios']">Usuarios</a></li>
+        <li>Reportes</li>
+        <li>Control</li>
+        <li>Ajustes</li>
+      </ul>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="content">
+      <h1>Reportes de Usuarios</h1>
+
+      <!-- Tabla -->
+      <div class="table-container">
+        <table class="tabla-usuarios">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>EMAIL</th>
+              <th>MENSAJE</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let rep of reportes">
+              <td>{{rep.id}}</td>
+              <td>{{rep.nombre}}</td>
+              <td>{{rep.email}}</td>
+              <td>{{rep.mensaje}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </main>
+
+  </div>
+</section>
